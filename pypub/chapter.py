@@ -50,5 +50,10 @@ class EpubChapter:
 				tag.decompose()
 			else:
 				tag.attrs = {}
-		return str(docs_content)
+
+		content = str(docs_content)
+		# replace tabs with 4 spaces
+		# I love tabs but kindle renders them 8char wide
+		content = content.replace("\t", "    ")
+		return content
 
