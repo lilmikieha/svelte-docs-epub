@@ -4,6 +4,10 @@
 secret/
 cache/
 
+temp_epub/
+*.epub
+*.azw3
+
 # === Python ===
 __pycache__/
 *.py[cod]
