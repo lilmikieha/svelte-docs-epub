@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
+import hashlib
 import json
 import os
-import hashlib
+import sys
 
 from bs4 import BeautifulSoup
 import requests
@@ -62,7 +63,7 @@ def docs_to_epub(root_url, output_filename, title):
 			get_page_html(page_href)
 			chapter_html_paths.append(get_cache_path(page_href))
 
-	print(f"Found {len(chapter_html_paths)} chapters.")
+	# print(f"Found {len(chapter_html_paths)} chapters.")
 	create_epub_from_htmls(
 		chapter_html_paths,
 		output_filename=output_filename,
@@ -71,10 +72,28 @@ def docs_to_epub(root_url, output_filename, title):
 	)
 
 
+def create_docs_epub(doc_name: str = "main"):
+	match doc_name:
+		case 'kit':
+			docs_to_epub("https://svelte.dev/docs/kit/introduction", output_filename="sveltekit-docs.epub", title="SvelteKit Docs")
+		case 'cli':
+			docs_to_epub("https://svelte.dev/docs/cli/overview", output_filename="svelte-cli-docs.epub", title="Svelte CLI Docs")
+		case 'main':
+			docs_to_epub("https://svelte.dev/docs/svelte/overview", output_filename="svelte-docs.epub", title="Svelte Docs")
+		case _:
+			print(f"Unknown doc name: '{doc_name}'")
+
+
 def main():
-	docs_to_epub("https://svelte.dev/docs/svelte/overview", output_filename="svelte-docs.epub", title="Svelte Docs")
-	docs_to_epub("https://svelte.dev/docs/kit/introduction", output_filename="sveltekit-docs.epub", title="SvelteKit Docs")
-	docs_to_epub("https://svelte.dev/docs/cli/overview", output_filename="svelte-cli-docs.epub", title="Svelte CLI Docs")
+	args = sys.argv[1:]
+	doc_name = args[0] if len(args) else 'main'
+
+	if doc_name == "all":
+		create_docs_epub('main')
+		create_docs_epub('kit')
+		create_docs_epub('cli')
+	else:
+		create_docs_epub(doc_name)
 
 
 if __name__ == '__main__':
