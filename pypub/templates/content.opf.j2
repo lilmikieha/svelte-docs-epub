@@ -7,12 +7,14 @@
 		<dc:creator>{{ author }}</dc:creator>
 	</metadata>
 	<manifest>
+		<item id="inline_toc" href="inline_toc.xhtml" media-type="application/xhtml+xml" />
 		{% for chapter in chapters %}
 		<item id="{{ chapter.uuid }}" href="{{ chapter.output_filepath }}" media-type="application/xhtml+xml" />
 		{% endfor %}
 		<item id="ncx" href="toc.ncx" media-type="application/x-dtbncx+xml" />
 	</manifest>
 	<spine toc="ncx">
+		<itemref idref="inline_toc" />
 		{% for chapter in chapters %}
 		<itemref idref="{{ chapter.uuid }}" />
 		{% endfor %}

@@ -6,6 +6,11 @@
 	</head>
 	<docTitle><text>{{ title }}</text></docTitle>
 	<navMap>
+		<navPoint id="navPoint-0" playOrder="0">
+			<navLabel><text>Table of Contents</text></navLabel>
+			<content src="inline_toc.xhtml"/>
+		</navPoint>
+
 		{% for i, chapter in enumerate(chapters) %}
 		<navPoint id="navPoint-{{ i+1 }}" playOrder="{{ i+1 }}">
 			<navLabel><text>{{ chapter.get_title() }}</text></navLabel>

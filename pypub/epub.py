@@ -60,6 +60,15 @@ def create_epub_from_htmls(chapter_urls, output_filename="output.epub", title="C
 		with open(oebps_dir / chapter.output_filepath, "w", encoding="utf-8") as f:
 			f.write(chapter_content)
 
+	# Add inline toc
+	content_opf = render_template(
+		"inline_toc.xhtml.j2",
+		page_title="Table of Contents",
+		chapters=chapters
+	)
+	with open(oebps_dir / "inline_toc.xhtml", "w", encoding="utf-8") as f:
+		f.write(content_opf)
+
 	# Write OPF
 	content_opf = render_template(
 		"content.opf.j2",
