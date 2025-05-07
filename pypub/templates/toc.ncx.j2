@@ -8,7 +8,7 @@
 	<navMap>
 		{% for i, chapter in enumerate(chapters) %}
 		<navPoint id="navPoint-{{ i+1 }}" playOrder="{{ i+1 }}">
-			<navLabel><text>{{ chapter.markdown_filename }}</text></navLabel>
+			<navLabel><text>{{ chapter.get_title() }}</text></navLabel>
 			<content src="{{ chapter.output_filepath }}"/>
 		</navPoint>
 		{% endfor %}
