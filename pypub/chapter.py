@@ -1,14 +1,12 @@
-import os
 import uuid
 
-from bs4 import BeautifulSoup
+from .utils import get_soup
 
 
 
 class EpubChapter:
-	def __init__(self, html_filepath):
-		self.html_filepath = html_filepath
-		self.html_filename = os.path.basename(self.html_filepath)
+	def __init__(self, url):
+		self.url = url
 		self.uuid = uuid.uuid4()
 		self.soup = None
 
@@ -17,8 +15,8 @@ class EpubChapter:
 		return f"texts/text-{self.uuid}.xhtml"
 
 	def setup_soup(self):
-		with open(self.html_filepath) as f:
-			self.soup = BeautifulSoup(f.read(), "lxml")
+		if not self.soup:
+			self.soup = get_soup(self.url)
 
 	def get_title(self):
 		if not self.soup:

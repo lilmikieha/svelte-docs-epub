@@ -40,7 +40,7 @@ def render_template(name, **kwargs):
 	return env.get_template(name).render(**kwargs)
 
 
-def create_epub_from_htmls(html_files, output_filename="output.epub", title="Collected HTML", author="Ankur Seth"):
+def create_epub_from_htmls(chapter_urls, output_filename="output.epub", title="Collected HTML", author="Ankur Seth"):
 	temp_dir = Path("temp_epub")
 	create_epub_structure(temp_dir)
 	oebps_dir = temp_dir / "OEBPS"
@@ -49,8 +49,8 @@ def create_epub_from_htmls(html_files, output_filename="output.epub", title="Col
 	uid = str(uuid.uuid4())
 
 	chapters = []
-	for i, html_file in enumerate(html_files):
-		chapter = EpubChapter(html_file)
+	for i, chapter_url in enumerate(chapter_urls):
+		chapter = EpubChapter(chapter_url)
 		chapters.append(chapter)
 
 		chapter_content = render_template(

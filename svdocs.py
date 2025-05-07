@@ -5,7 +5,7 @@ import os
 import sys
 
 from pypub.epub import create_epub_from_htmls
-from pypub.utils import get_soup, get_cache_path
+from pypub.utils import get_soup
 
 
 
@@ -18,20 +18,20 @@ def docs_to_epub(root_url, output_filename, title):
 	soup = get_soup(root_url)
 	sidebar = soup.find("ul", class_="sidebar")
 	li_tags = [li for li in sidebar.children if li.name == "li"]
-	chapter_html_paths = []
+	chapter_urls = []
 	for li_tag in li_tags:
 		section_title = li_tag.find("h3").text.strip()
 		# print(f"Section: {section_title}")
 		a_tags = li_tag.find_all("a", class_="page")
 		for a_tag in a_tags:
 			page_title = a_tag.text.strip()
-			page_href = f"{BASE_URL}{a_tag['href']}"
-			# print(f"\t{page_title} ({page_href})")
-			chapter_html_paths.append(get_cache_path(page_href))
+			chapter_url = f"{BASE_URL}{a_tag['href']}"
+			# print(f"\t{page_title} ({chapter_url})")
+			chapter_urls.append(chapter_url)
 
 	# print(f"Found {len(chapter_html_paths)} chapters.")
 	create_epub_from_htmls(
-		chapter_html_paths,
+		chapter_urls,
 		output_filename=output_filename,
 		title=title,
 		author=AUTHOR
