@@ -103,7 +103,7 @@ def create_epub_from_htmls(html_files, output_filename="output.epub", title="Col
 		chapters.append(chapter)
 
 		chapter_content = render_template(
-			"chapter.xhtml.j2", title=chapter.get_title(), content=chapter.get_content()
+			"chapter.xhtml.j2", page_title=chapter.get_title(), content=chapter.get_content()
 		)
 
 		with open(oebps_dir / chapter.output_filepath, "w", encoding="utf-8") as f:
@@ -142,5 +142,5 @@ def create_epub_from_htmls(html_files, output_filename="output.epub", title="Col
 				epub.write(full_path, str(rel_path), compress_type=zipfile.ZIP_DEFLATED)
 
 	shutil.rmtree(temp_dir)
-	print(f"EPUB created: {Path(output_filename).resolve()}")
+	print(f"EPUB created: {Path(output_filename).resolve()} ({len(chapters)} chapters)")
 

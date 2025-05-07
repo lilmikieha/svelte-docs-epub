@@ -11,7 +11,8 @@ from pypub.epub import create_epub_from_htmls
 
 
 
-ROOT_URL = "https://svelte.dev/docs/svelte/overview"
+AUTHOR = "Svelte Team"
+BASE_URL = "https://svelte.dev"
 
 session = requests.session()
 
@@ -45,28 +46,35 @@ def get_soup(page_url: str):
 	return soup
 
 
-def main():
-	soup = get_soup(ROOT_URL)
+def docs_to_epub(root_url, output_filename, title):
+	soup = get_soup(root_url)
 	sidebar = soup.find("ul", class_="sidebar")
 	li_tags = [li for li in sidebar.children if li.name == "li"]
 	chapter_html_paths = []
 	for li_tag in li_tags:
-		title = li_tag.find("h3").text.strip()
-		# print(f"Section: {title}")
+		section_title = li_tag.find("h3").text.strip()
+		# print(f"Section: {section_title}")
 		a_tags = li_tag.find_all("a", class_="page")
 		for a_tag in a_tags:
 			page_title = a_tag.text.strip()
-			page_href = f"https://svelte.dev{a_tag['href']}"
+			page_href = f"{BASE_URL}{a_tag['href']}"
 			# print(f"\t{page_title} ({page_href})")
+			get_page_html(page_href)
 			chapter_html_paths.append(get_cache_path(page_href))
 
 	print(f"Found {len(chapter_html_paths)} chapters.")
 	create_epub_from_htmls(
 		chapter_html_paths,
-		output_filename="svelte-docs.epub",
-		title="Svelte Docs",
-		author="Svelte Team"
+		output_filename=output_filename,
+		title=title,
+		author=AUTHOR
 	)
+
+
+def main():
+	docs_to_epub("https://svelte.dev/docs/svelte/overview", output_filename="svelte-docs.epub", title="Svelte Docs")
+	docs_to_epub("https://svelte.dev/docs/kit/introduction", output_filename="sveltekit-docs.epub", title="SvelteKit Docs")
+	docs_to_epub("https://svelte.dev/docs/cli/overview", output_filename="svelte-cli-docs.epub", title="Svelte CLI Docs")
 
 
 if __name__ == '__main__':
